@@ -1,0 +1,6 @@
+host: smtp.office365.com
+puerto: 587
+mail_usuario: mail_usuario
+password: password
+mail_destinatario: 
+  - mail_destinatario

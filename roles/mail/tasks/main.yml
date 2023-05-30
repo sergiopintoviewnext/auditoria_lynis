@@ -1,0 +1,23 @@
+---
+
+- name: Comprimir carpeta result_auditoria
+  community.general.archive:
+    path: /tmp/result_auditoria
+    dest: /tmp/result_auditoria.tgz
+  delegate_to: localhost
+
+- name: Enviar por correo resultado auditoria
+  community.general.mail:
+    host: "{{ host }}"
+    port: "{{ puerto }}"
+    username: "{{ mail_usuario }}"
+    password: "{{ password }}"
+    from: "{{ mail_usuario }}"
+    to: "{{ mail_destinatario }}"
+    subject: "Resultado de autidoria de servidor {{ ansible_hostname }}"
+    attach:
+    - /tmp/result_auditoria.tgz    
+  with_items: "{{ mail_destinatario }}"
+  delegate_to: localhost
+
+...
