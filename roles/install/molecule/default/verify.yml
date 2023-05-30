@@ -1,0 +1,22 @@
+---
+# This is an example playbook to execute Ansible tests.
+
+- name: Verify
+  hosts: all
+  gather_facts: true
+  vars:
+    - version: 3.0.8
+  tasks:
+    - name: Comprobar existencia carpeta Lynis
+      ansible.builtin.stat:
+        path: opt/lynis-{{ version }}
+      register: existe
+
+
+    - name: Comprobar si existe
+      ansible.builtin.assert:
+        that: existe.stat.exists == true
+        success_msg: "{{ existe.stat.path }} existe"
+        fail_msg: "{{ existe.stat.path }} no existe"
+
+...

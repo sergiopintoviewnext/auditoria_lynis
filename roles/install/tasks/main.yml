@@ -1,0 +1,9 @@
+---
+
+- name: Descarga y descompresión de paquete Lynis de github
+  ansible.builtin.unarchive:
+    src: "https://github.com/CISOfy/lynis/archive/refs/tags/{{ version }}.tar.gz"
+    dest: /opt/
+    remote_src: yes    
+
+...
