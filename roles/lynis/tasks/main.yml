@@ -1,0 +1,16 @@
+---
+
+- name: Ejecutar auditoria del systema 
+  ansible.builtin.command:
+    chdir: "opt/lynis-{{ version }}"
+    cmd: ./lynis audit system
+  register: auditar
+  changed_when: false
+
+
+- name: Copiar lynis.log a servidor ansible
+  ansible.builtin.fetch:
+    src: /var/log/lynis.log
+    dest: "/tmp/result_auditoria/{{ ansible_hostname }}.log"
+
+...

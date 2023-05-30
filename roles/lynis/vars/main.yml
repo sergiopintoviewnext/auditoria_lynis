@@ -1,0 +1,8 @@
+version: 3.0.8
+
+host: smtp.server.com
+puerto: 587
+mail_usuario: mail@exameple.com
+password: password
+mail_destinatario: 
+  - mail@example.com
