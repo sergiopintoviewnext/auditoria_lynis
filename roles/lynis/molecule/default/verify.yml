@@ -3,10 +3,32 @@
 
 - name: Verify
   hosts: all
-  gather_facts: false
+  gather_facts: true
   tasks:
-  - name: Example assertion
+  - name: Comprobar si existe log de auditoria 
+    ansible.builtin.stat:
+      path: /var/log/lynis.log
+    register: fichero_log
+
+  
+  - name: Verificación
     ansible.builtin.assert:
-      that: true
+      that: fichero_log.stat.exists
+      success_msg: "El fichero lynis.log existe"
+      fail_msg: "El fichero lynis.log no existe"
+
+
+  - name: Comprobar si existe log de auditoria 
+    ansible.builtin.stat:
+      path: /tmp/result_auditoria/{{ ansible_hostname }}.log
+    register: fichero_log_local
+    delegate_to: localhost
+  
+  - name: Verificación
+    ansible.builtin.assert:
+      that: fichero_log_local.stat.exists
+      success_msg: "El fichero /tmp/result_auditoria/{{ ansible_hostname }}.log existe"
+      fail_msg: "El fichero /tmp/result_auditoria/{{ ansible_hostname }}.log no existe"
+    delegate_to: localhost      
 
 ...

@@ -1,6 +1,6 @@
 ---
 
-- name: Ejecutar auditoria del systema 
+- name: Ejecutar auditoria del sistema 
   ansible.builtin.command:
     chdir: "opt/lynis-{{ version }}"
     cmd: ./lynis audit system
