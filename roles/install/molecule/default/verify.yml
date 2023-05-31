@@ -19,4 +19,17 @@
         success_msg: "{{ existe.stat.path }} existe"
         fail_msg: "{{ existe.stat.path }} no existe"
 
+
+    - name: Comprobar version
+      ansible.builtin.command:
+        cmd: ./lynis show version
+        chdir: opt/lynis-{{ version }}
+      register: comando_version
+
+
+    - name: Comprobar si existe
+      ansible.builtin.assert:
+        that: '"{{ version }}" in comando_version.stdout'
+        success_msg: "Version correcta ({{ comando_version.stdout }})"
+        fail_msg: "Version incorrecta ({{ comando_version.stdout }})"   
 ...
