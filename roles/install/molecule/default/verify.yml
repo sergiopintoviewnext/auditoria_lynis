@@ -31,5 +31,6 @@
       ansible.builtin.assert:
         that: '"{{ version }}" in comando_version.stdout'
         success_msg: "Version correcta ({{ comando_version.stdout }})"
-        fail_msg: "Version incorrecta ({{ comando_version.stdout }})"   
+        fail_msg: "Version incorrecta ({{ comando_version.stdout }})"
+        
 ...

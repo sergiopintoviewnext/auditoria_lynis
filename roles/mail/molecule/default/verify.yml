@@ -3,8 +3,20 @@
 
 - name: Verify
   hosts: all
-  gather_facts: false
+  gather_facts: true
   tasks:
-  - name: Example assertion
+  - name: Comprobar si existe archivo comprimido
+    ansible.builtin.stat:
+      path: /tmp/result_auditoria.tgz
+    delegate_to: localhost
+    register: fichero
+
+  
+  - name: Verificación
     ansible.builtin.assert:
-      that: true
+      that: fichero.stat.exists
+      success_msg: "El fichero /tmp/result_auditoria.tgz existe"
+      fail_msg: "El fichero /tmp/result_auditoria.tgz no existe"
+    delegate_to: localhost
+
+...

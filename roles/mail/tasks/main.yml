@@ -19,5 +19,6 @@
     - /tmp/result_auditoria.tgz    
   with_items: "{{ mail_destinatario }}"
   delegate_to: localhost
+  register: mail
 
 ...

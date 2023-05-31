@@ -1,4 +1,4 @@
-host: smtp.office365.com
+host: smtp.server.com
 puerto: 587
 mail_usuario: mail_usuario
 password: password

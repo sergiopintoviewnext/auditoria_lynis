@@ -1,4 +1,5 @@
 ---
+
 - name: Converge
   hosts: all
   gather_facts: true
@@ -6,3 +7,5 @@
     - name: "Include mail"
       ansible.builtin.include_role:
         name: "mail"
+
+...
